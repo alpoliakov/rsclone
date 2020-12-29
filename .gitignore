@@ -254,4 +254,6 @@ fabric.properties
 .editorconfig
 
 # Local History for Visual Studio Code
-.history/
+.history
+
+.next
