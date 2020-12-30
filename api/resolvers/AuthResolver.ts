@@ -8,8 +8,10 @@ import { UserResponse } from "../types/UserResponse";
 @Resolver()
 export class AuthResolver {
   @Mutation(() => UserResponse)
-  async register(@Arg('input') { email, password }: AuthInput): Promise<UserResponse> {
-    const existingUser = await UserModel.findOne(email);
+  async register(
+    @Arg('input') { email, password }: AuthInput
+  ): Promise<UserResponse> {
+    const existingUser = await UserModel.findOne({ email });
 
     if (existingUser) {
       throw new Error('Email already in use');
