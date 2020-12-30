@@ -257,3 +257,6 @@ fabric.properties
 .history
 
 .next
+*.graphql.d.ts
+*.graphqls.d.ts
+__generated__

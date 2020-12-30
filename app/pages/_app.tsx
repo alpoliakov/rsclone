@@ -1,9 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { themeDark, themeLight } from 'lib/theme';
+import { ApolloProvider } from '@apollo/client';
+import { useApollo } from "../lib/apollo";
 
 export default function MyApp({Component, pageProps})  {
+  const apolloClient = useApollo(pageProps.initialApolloState);
+  const [darkState, setDarkState] = useState(false);
+  const handleThemeChange = ()  => setDarkState(!darkState);
+
   useEffect(() => {
     const jssStyles = document.getElementById('jss-server-side');
     if (jssStyles && jssStyles.parentNode) {
@@ -11,9 +17,11 @@ export default function MyApp({Component, pageProps})  {
     }
   }, [])
   return (
-    <ThemeProvider theme={false ? themeDark : themeLight}>
-      <CssBaseline />
-      <Component {...pageProps}/>
-    </ThemeProvider>
+    <ApolloProvider client={apolloClient}>
+      <ThemeProvider theme={darkState ? themeDark : themeLight}>
+        <CssBaseline />
+        <Component {...pageProps}/>
+      </ThemeProvider>
+    </ApolloProvider>
   )
 };
