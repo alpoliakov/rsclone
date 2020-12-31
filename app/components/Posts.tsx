@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from "next/link";
 import { Theme, makeStyles } from '@material-ui/core/styles';
-import { Stream } from "../lib/graphql/stream.graphql";
+import { Stream } from "../lib/graphql/streams.graphql";
 import {
   Typography,
   Grid,
