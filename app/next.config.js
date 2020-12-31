@@ -2,14 +2,14 @@ module.exports = {
   webpack(config, options) {
     config.module.rules.push({
       test: /\.graphql$/,
-      exclude: /node_midules/,
+      exclude: /node_modules/,
       use: [options.defaultLoaders.babel, { loader: 'graphql-let/loader' }],
     });
 
     config.module.rules.push({
       test: /\.graphqls$/,
-      exclude: /node_midules/,
-      use: [options.defaultLoaders.babel, { loader: 'graphql-let/loader' }],
+      exclude: /node_modules/,
+      use: ['graphql-let/schema/loader'],
     });
 
     config.module.rules.push({
@@ -20,4 +20,4 @@ module.exports = {
 
     return config;
   },
-}
+};

@@ -16,7 +16,7 @@ type Mutation {
   register(input: AuthInput!): UserResponse!
 }
 
-"""Mongo id scalar type"""
+"""Mongo object id scalar type"""
 scalar ObjectId
 
 type Query {
@@ -26,7 +26,6 @@ type Query {
   user(userId: ObjectId!): User
 }
 
-"""Post embedded post content"""
 type Stream {
   _id: ObjectId!
   author: User!

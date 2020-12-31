@@ -5,8 +5,7 @@ import {
   NormalizedCacheObject,
   HttpLink,
 } from '@apollo/client';
-import { setContext } from "@apollo/client/link/context";
-
+import { setContext } from '@apollo/client/link/context';
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
@@ -18,12 +17,11 @@ function createApolloClient() {
       headers: {
         ...headers,
         authorization: token ? `Bearer ${token}` : '',
-      }
+      },
     };
   });
-
   const httpLink = new HttpLink({
-    uri: `http://localhost:8000/graphql`,
+    uri: 'http://localhost:8000/graphql',
     credentials: 'include',
   });
 
@@ -31,7 +29,7 @@ function createApolloClient() {
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
   });
-};
+}
 
 export function initializeApollo(initialState: any = null) {
   const _apolloClient = apolloClient ?? createApolloClient();
@@ -40,13 +38,9 @@ export function initializeApollo(initialState: any = null) {
     _apolloClient.cache.restore(initialState);
   }
 
-  if (typeof window === 'undefined') {
-    return _apolloClient;
-  }
+  if (typeof window === 'undefined') return _apolloClient;
 
-  if (!apolloClient) {
-    apolloClient = _apolloClient;
-  }
+  if (!apolloClient) apolloClient = _apolloClient;
 
   return _apolloClient;
 };

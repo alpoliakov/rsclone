@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
-import { useAuth } from "../../lib/useAuth";
-import {
-  Button,
-  Typography,
-  Container,
-  Box,
-  TextField,
-} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import { useAuth } from 'lib/useAuth';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { error, signUp } = useAuth();
 
-  const onSubmit = async e => {
-    e.preventDefault();
-    await signUp(email, password);
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    signUp(email, password);
   };
 
   return (
@@ -27,7 +25,7 @@ export default function SignUp() {
           <Box pb={2.5} />
           <TextField
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className="form-control"
             label="Email"
             required
@@ -35,10 +33,10 @@ export default function SignUp() {
           <Box pb={2.5} />
           <TextField
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
             className="form-control"
             label="Password"
-            type="password"
             required
           />
           <Box pb={2.5} />
@@ -53,5 +51,5 @@ export default function SignUp() {
         </form>
       </Box>
     </Container>
-  )
+  );
 };

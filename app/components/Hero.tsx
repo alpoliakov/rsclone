@@ -10,7 +10,6 @@ import {
   Grid,
   Paper,
 } from '@material-ui/core';
-import {url} from "inspector";
 
 interface Props {
   stream: Stream;
@@ -19,10 +18,13 @@ interface Props {
 export default function Hero({ stream }: Props) {
   const styles = useStyles();
   const { user } = useAuth();
-  const showEdit = user && user._id === stream.author._id;
+
+  const showEdit =
+    user &&
+    user._id === stream.author._id;
 
   return (
-    <Paper className={styles.mainFeaturePost}>
+    <Paper className={styles.mainFeaturedPost}>
       <div className={styles.overlay} />
       <Grid container>
         <Grid item md={6}>
@@ -60,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   toolbarTitle: {
     flex: 1,
   },
-  mainFeaturePost: {
+  mainFeaturedPost: {
     position: 'relative',
     backgroundColor: theme.palette.grey[800],
     color: theme.palette.common.white,
@@ -76,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)'
+    backgroundColor: 'rgba(0,0,0,.7)',
   },
   mainFeaturedPostContent: {
     position: 'relative',
@@ -84,6 +86,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       padding: theme.spacing(6),
       paddingRight: 0,
-    }
+    },
   },
 }));

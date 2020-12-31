@@ -66,7 +66,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   cardDetails: {
     flex: 1,
   },
+  cardText: {
+    maxWidth: '26rem',
+  },
   cardMedia: {
     width: 160,
-  }
+  },
 }));

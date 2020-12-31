@@ -23,10 +23,10 @@ export default function MyApp({Component, pageProps})  {
       <ThemeProvider theme={darkState ? themeDark : themeLight}>
         <CssBaseline />
         <AuthProvider>
-          <Header darkState={darkState} handleThemeChange={handleThemeChange}/>
-          <Component {...pageProps}/>
+          <Header darkState={darkState} handleThemeChange={handleThemeChange} />
+          <Component {...pageProps} />
         </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
-  )
+  );
 };

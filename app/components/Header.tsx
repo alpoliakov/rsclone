@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import Link from "next/link";
-import { useAuth} from "../lib/useAuth";
 import {
   AppBar,
   Toolbar,
-  Link as LinkText,
   Typography,
   Button,
+  Link as LinkText,
   Switch,
 } from '@material-ui/core';
+import Link from 'next/link';
+import { useAuth } from 'lib/useAuth';
 
 export default function Header({ darkState, handleThemeChange }) {
   const classes = useStyles();
@@ -18,16 +18,16 @@ export default function Header({ darkState, handleThemeChange }) {
   const links = [
     !user && { label: 'Sign Up', href: '/auth/signup' },
     !user && { label: 'Sign In', href: '/auth/signin' },
-    user && { label: 'Create', href: '/stream/new' },
+    user && { label: 'Create', href: '/streams/new' },
     user && { label: 'Sign Out', href: '/auth/signout' },
   ]
-    .filter(link => link)
+    .filter((link) => link)
     .map(({ label, href }) => {
       return (
         <Link href={href} key={href}>
-          <Button color="inherit">{ label }</Button>
+          <Button color="inherit">{label}</Button>
         </Link>
-      )
+      );
     });
 
   return (
@@ -41,13 +41,13 @@ export default function Header({ darkState, handleThemeChange }) {
               </LinkText>
             </Link>
           </Typography>
-          <Switch checked={darkState} onChange={handleThemeChange}/>
-          { links }
+          <Switch checked={darkState} onChange={handleThemeChange} />
+          {links}
         </Toolbar>
       </AppBar>
     </div>
-  )
-};
+  );
+}
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -61,5 +61,5 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   list: {
     width: 250,
-  }
+  },
 }));

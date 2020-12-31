@@ -1,15 +1,17 @@
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { UserModel } from "../entity/User";
-import { AuthInput } from "../types/Authinput";
-import { UserResponse } from "../types/UserResponse";
+
+import { UserModel } from '../entity/User';
+import { AuthInput } from '../types/AuthInput';
+import { UserResponse } from '../types/UserResponse';
 
 @Resolver()
 export class AuthResolver {
   @Mutation(() => UserResponse)
   async register(
-    @Arg('input') { email, password }: AuthInput
+    @Arg('input')
+      { email, password }: AuthInput
   ): Promise<UserResponse> {
     const existingUser = await UserModel.findOne({ email });
 
@@ -27,7 +29,7 @@ export class AuthResolver {
 
     const token = jwt.sign(
       payload,
-      process.env.SESSION_SECRET || 'assa1212'
+      process.env.SESSION_SECRET || 'aslkdfjoiq12312'
     );
 
     return { user, token };
@@ -37,27 +39,27 @@ export class AuthResolver {
   async login(
     @Arg('input') { email, password }: AuthInput
   ): Promise<UserResponse> {
-    const existingUser = await UserModel.findOne({ email });
+    const user = await UserModel.findOne({ email });
 
-    if (!existingUser) {
+    if (!user) {
       throw new Error('Invalid login');
     }
 
-    const valid = await bcrypt.compare(password, existingUser.password);
+    const valid = await bcrypt.compare(password, user.password);
 
     if (!valid) {
       throw new Error('Invalid login');
     }
 
     const payload = {
-      id: existingUser.id,
+      id: user.id,
     };
 
     const token = jwt.sign(
       payload,
-      process.env.SESSION_SECRET || 'assa1212'
+      process.env.SESSION_SECRET || 'aslkdfjoiq12312'
     );
 
-    return { user: existingUser, token };
+    return { user, token };
   }
-}
+};
