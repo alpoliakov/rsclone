@@ -11,6 +11,7 @@ let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
 function createApolloClient() {
   const authLink = setContext((_, { headers }) => {
+    // @ts-ignore
     const token = sessionStorage.getItem('token');
 
     return {
@@ -21,7 +22,7 @@ function createApolloClient() {
     };
   });
   const httpLink = new HttpLink({
-    uri: 'http://localhost:8000/graphql',
+    uri: '/graphql',
     credentials: 'include',
   });
 
@@ -38,6 +39,7 @@ export function initializeApollo(initialState: any = null) {
     _apolloClient.cache.restore(initialState);
   }
 
+  // @ts-ignore
   if (typeof window === 'undefined') return _apolloClient;
 
   if (!apolloClient) apolloClient = _apolloClient;

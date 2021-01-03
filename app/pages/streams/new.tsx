@@ -14,8 +14,7 @@ export default function CreateStream() {
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
   const router = useRouter();
-  console.log('Hello');
-
+  
   const [createStream] = useCreateStreamMutation();
 
   const onSubmit = async (event) => {

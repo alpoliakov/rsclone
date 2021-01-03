@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "@stream-app/api",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",

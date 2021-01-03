@@ -4,18 +4,21 @@ import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import cors from 'cors';
 
+import nextApp from "@stream-app/app";
 import createSchema from '../schema';
 import createSession from '../session';
+import { IncomingMessage, ServerResponse } from 'http';
 
 const port = process.env.PORT || 8000;
+const handle = nextApp.getRequestHandler();
 
+// @ts-ignore
 async function createServer() {
   try {
     await createSession();
     const app = express();
 
     const corsOptions = {
-      origin: 'http://localhost:3000',
       credentials: true,
     };
     app.use(cors(corsOptions));
@@ -26,7 +29,7 @@ async function createServer() {
 
     const apolloServer = new ApolloServer({
       schema,
-      context: ({ req, res }) => ({ req, res }),
+      context: ({req, res}) => ({req, res}),
       introspection: true,
       playground: {
         settings: {
@@ -35,7 +38,10 @@ async function createServer() {
       },
     });
 
-    apolloServer.applyMiddleware({ app, cors: corsOptions });
+    apolloServer.applyMiddleware({app, cors: corsOptions});
+
+    await nextApp.prepare();
+    app.get('*', (req: IncomingMessage, res: ServerResponse) => handle(req, res));
 
     app.listen({ port }, () => {
       console.log(

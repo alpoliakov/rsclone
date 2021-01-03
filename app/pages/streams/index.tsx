@@ -20,5 +20,5 @@ export default function Streams() {
         <Posts streams={data.streams as Stream[]} />
       )}
     </Container>
-  )
+  );
 };
