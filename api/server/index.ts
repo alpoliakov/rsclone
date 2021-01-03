@@ -7,7 +7,6 @@ import cors from 'cors';
 import nextApp from "@stream-app/app";
 import createSchema from '../schema';
 import createSession from '../session';
-import { IncomingMessage, ServerResponse } from 'http';
 
 const port = process.env.PORT || 8080;
 const handle = nextApp.getRequestHandler();
@@ -40,7 +39,7 @@ async function createServer() {
     apolloServer.applyMiddleware({app, cors: corsOptions});
 
     await nextApp.prepare();
-    app.get('*', (req: IncomingMessage, res: ServerResponse) => handle(req, res));
+    app.get('*', (req, res) => handle(req, res));
 
     app.listen({ port }, () => {
       console.log(
