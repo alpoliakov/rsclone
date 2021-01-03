@@ -12,4 +12,4 @@ if (!result.error) {
       }
     });
   }
-};
+}
