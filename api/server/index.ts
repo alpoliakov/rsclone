@@ -9,7 +9,7 @@ import createSchema from '../schema';
 import createSession from '../session';
 import { IncomingMessage, ServerResponse } from 'http';
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8080;
 const handle = nextApp.getRequestHandler();
 
 // @ts-ignore
@@ -22,7 +22,6 @@ async function createServer() {
       credentials: true,
     };
     app.use(cors(corsOptions));
-
     app.use(express.json());
 
     const schema = await createSchema();
