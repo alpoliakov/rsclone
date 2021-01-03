@@ -25,7 +25,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head ><title>Stream-app</title></Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
