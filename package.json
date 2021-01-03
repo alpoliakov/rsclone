@@ -1,0 +1,18 @@
+{
+  "name": "stream-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/alpoliakov/stream-app.git",
+  "author": "alpoliakov <alpoliakov73@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn workspace @stream-app/app run build",
+    "start": "yarn workspace @stream-app/api run start",
+    "dev": "yarn workspace @stream-app/api run dev"
+  },
+  "workspaces": [
+    "api",
+    "app"
+  ]
+}
