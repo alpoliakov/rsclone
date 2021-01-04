@@ -14,5 +14,8 @@
   "workspaces": [
     "api",
     "app"
-  ]
+  ],
+  "engines": {
+    "node": "15.x"
+  }
 }
