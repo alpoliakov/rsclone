@@ -6,6 +6,7 @@ import { ApolloProvider } from '@apollo/client';
 import { useApollo } from "../lib/apollo";
 import { AuthProvider } from "../lib/useAuth";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function MyApp({Component, pageProps})  {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -25,6 +26,7 @@ export default function MyApp({Component, pageProps})  {
         <AuthProvider>
           <Header darkState={darkState} handleThemeChange={handleThemeChange} />
           <Component {...pageProps} />
+          <Footer />
         </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
