@@ -6,7 +6,6 @@ import {
   Link as LinkText,
 } from '@material-ui/core';
 import {makeStyles, Theme} from "@material-ui/core/styles";
-import Link from 'next/link';
 
 export default function Footer() {
   const classes = useStyles();
