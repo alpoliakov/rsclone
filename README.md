@@ -1,2 +1,2 @@
 # rsclone
-### Link: https://stream-next-app.herokuapp.com/
+### Link: https://rsclone-stream.herokuapp.com/
