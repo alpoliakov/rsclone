@@ -46,9 +46,10 @@ function useProvideAuth() {
           router.push('/');
         });
       } else {
-        setError("Invalid Login");
+        setError("Invalid Login!");
       }
     } catch (err) {
+      console.log(err);
       setError(err.message);
     }
   }
@@ -62,7 +63,7 @@ function useProvideAuth() {
           router.push('/');
         });
       } else {
-        setError("Invalid Login");
+        setError("Invalid Login!");
       }
     } catch (err) {
       setError(err.message);
